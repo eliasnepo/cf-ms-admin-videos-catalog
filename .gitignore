@@ -6,11 +6,6 @@ build/
 !**/src/test/**/build/
 .DS_Store
 
-admin-catalogo-video/.gradle/7.4/fileHashes/fileHashes.lock
-admin-catalogo-video/.gradle/buildOutputCleanup/buildOutputCleanup.lock
-admin-catalogo-video/.gradle/buildOutputCleanup/outputFiles.bin
-admin-catalogo-video/.gradle/file-system.probe
-
 ### STS ###
 .apt_generated
 .classpath
