@@ -37,7 +37,7 @@ public class Category extends AggregateRoot<CategoryID> {
         final var now = Instant.now();
         final var deletedAt = isActive ? null : now;
 
-        return new Category(id, aName, aDescription, isActive, now, now, null);
+        return new Category(id, aName, aDescription, isActive, now, now, deletedAt);
     }
 
     @Override
