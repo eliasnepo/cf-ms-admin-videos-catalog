@@ -1,15 +1,15 @@
 package com.codeflix.admin.catalogo.configuration.usecases;
 
-import com.codeflix.admin.catalogo.category.create.CreateCategoryUseCase;
-import com.codeflix.admin.catalogo.category.create.DefaultCreateCategoryUseCase;
-import com.codeflix.admin.catalogo.category.delete.DefaultDeleteCategoryUseCase;
-import com.codeflix.admin.catalogo.category.delete.DeleteCategoryUseCase;
-import com.codeflix.admin.catalogo.category.retrieve.get.DefaultGetCategoryByIdUseCase;
-import com.codeflix.admin.catalogo.category.retrieve.get.GetCategoryByIdUseCase;
-import com.codeflix.admin.catalogo.category.retrieve.list.DefaultListCategoriesUseCase;
-import com.codeflix.admin.catalogo.category.retrieve.list.ListCategoriesUseCase;
-import com.codeflix.admin.catalogo.category.update.DefaultUpdateCategoryUseCase;
-import com.codeflix.admin.catalogo.category.update.UpdateCategoryUseCase;
+import com.codeflix.admin.catalogo.application.category.create.CreateCategoryUseCase;
+import com.codeflix.admin.catalogo.application.category.create.DefaultCreateCategoryUseCase;
+import com.codeflix.admin.catalogo.application.category.delete.DefaultDeleteCategoryUseCase;
+import com.codeflix.admin.catalogo.application.category.delete.DeleteCategoryUseCase;
+import com.codeflix.admin.catalogo.application.category.retrieve.get.DefaultGetCategoryByIdUseCase;
+import com.codeflix.admin.catalogo.application.category.retrieve.get.GetCategoryByIdUseCase;
+import com.codeflix.admin.catalogo.application.category.retrieve.list.DefaultListCategoriesUseCase;
+import com.codeflix.admin.catalogo.application.category.retrieve.list.ListCategoriesUseCase;
+import com.codeflix.admin.catalogo.application.category.update.DefaultUpdateCategoryUseCase;
+import com.codeflix.admin.catalogo.application.category.update.UpdateCategoryUseCase;
 import com.codeflix.admin.catalogo.domain.category.CategoryGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
