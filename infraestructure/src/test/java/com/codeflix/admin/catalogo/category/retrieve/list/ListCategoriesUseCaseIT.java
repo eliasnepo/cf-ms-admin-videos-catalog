@@ -1,4 +1,4 @@
-package com.codeflix.admin.catalogo.retrieve.list;
+package com.codeflix.admin.catalogo.category.retrieve.list;
 
 import com.codeflix.admin.catalogo.IntegrationTest;
 import com.codeflix.admin.catalogo.application.category.retrieve.list.ListCategoriesUseCase;

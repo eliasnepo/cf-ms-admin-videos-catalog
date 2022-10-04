@@ -8,6 +8,7 @@ import com.codeflix.admin.catalogo.domain.category.Category;
 import com.codeflix.admin.catalogo.domain.category.CategoryGateway;
 import com.codeflix.admin.catalogo.domain.category.CategoryID;
 import com.codeflix.admin.catalogo.domain.exceptions.DomainException;
+import com.codeflix.admin.catalogo.domain.exceptions.NotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class GetCategoryByIdUseCaseIT {
         final var expectedId = CategoryID.from("123");
 
         final var actualException = Assertions.assertThrows(
-                DomainException.class,
+                NotFoundException.class,
                 () -> useCase.execute(expectedId.getValue())
         );
 
