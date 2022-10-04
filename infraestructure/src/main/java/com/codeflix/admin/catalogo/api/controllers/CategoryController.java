@@ -5,8 +5,12 @@ import com.codeflix.admin.catalogo.application.category.create.CreateCategoryInp
 import com.codeflix.admin.catalogo.application.category.create.CreateCategoryOutput;
 import com.codeflix.admin.catalogo.application.category.create.CreateCategoryUseCase;
 import com.codeflix.admin.catalogo.application.category.retrieve.get.GetCategoryByIdUseCase;
+import com.codeflix.admin.catalogo.application.category.update.UpdateCategoryInput;
+import com.codeflix.admin.catalogo.application.category.update.UpdateCategoryOutput;
+import com.codeflix.admin.catalogo.application.category.update.UpdateCategoryUseCase;
 import com.codeflix.admin.catalogo.category.models.CreateCategoryRequest;
 import com.codeflix.admin.catalogo.category.models.GetCategoryResponse;
+import com.codeflix.admin.catalogo.category.models.UpdateCategoryRequest;
 import com.codeflix.admin.catalogo.category.presenters.CategoryApiPresenter;
 import com.codeflix.admin.catalogo.domain.pagination.Pagination;
 import com.codeflix.admin.catalogo.domain.validation.handler.Notification;
@@ -22,10 +26,12 @@ public class CategoryController implements CategoryAPI {
 
     private final CreateCategoryUseCase createCategoryUseCase;
     private final GetCategoryByIdUseCase getCategoryByIdUseCase;
+    private final UpdateCategoryUseCase updateCategoryUseCase;
 
-    public CategoryController(final CreateCategoryUseCase createCategoryUseCase, final GetCategoryByIdUseCase getCategoryByIdUseCase) {
+    public CategoryController(final CreateCategoryUseCase createCategoryUseCase, final GetCategoryByIdUseCase getCategoryByIdUseCase, final UpdateCategoryUseCase updateCategoryUseCase) {
         this.createCategoryUseCase = Objects.requireNonNull(createCategoryUseCase);
         this.getCategoryByIdUseCase = getCategoryByIdUseCase;
+        this.updateCategoryUseCase = updateCategoryUseCase;
     }
 
     @Override
@@ -54,5 +60,24 @@ public class CategoryController implements CategoryAPI {
     @Override
     public GetCategoryResponse getById(final String id) {
         return CategoryApiPresenter.present(this.getCategoryByIdUseCase.execute(id));
+    }
+
+    @Override
+    public ResponseEntity<?> updateById(final String id, final UpdateCategoryRequest input) {
+        final var aCommand = UpdateCategoryInput.with(
+                id,
+                input.name(),
+                input.description(),
+                input.active() != null ? input.active() : true
+        );
+
+        final Function<Notification, ResponseEntity<?>> onError = notification ->
+                ResponseEntity.unprocessableEntity().body(notification);
+
+        final Function<UpdateCategoryOutput, ResponseEntity<?>> onSuccess =
+                ResponseEntity::ok;
+
+        return this.updateCategoryUseCase.execute(aCommand)
+                .fold(onError, onSuccess);
     }
 }

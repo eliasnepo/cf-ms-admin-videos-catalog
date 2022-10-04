@@ -2,6 +2,7 @@ package com.codeflix.admin.catalogo.api;
 
 import com.codeflix.admin.catalogo.category.models.CreateCategoryRequest;
 import com.codeflix.admin.catalogo.category.models.GetCategoryResponse;
+import com.codeflix.admin.catalogo.category.models.UpdateCategoryRequest;
 import com.codeflix.admin.catalogo.domain.pagination.Pagination;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -54,4 +55,17 @@ public interface CategoryAPI {
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
     GetCategoryResponse getById(@PathVariable(name = "id") String id);
+
+    @PutMapping(
+            value = "{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @Operation(summary = "Update a category by it's identifier")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Category updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Category was not found"),
+            @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
+    })
+    ResponseEntity<?> updateById(@PathVariable(name = "id") String id, @RequestBody UpdateCategoryRequest request);
 }
